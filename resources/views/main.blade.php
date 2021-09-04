@@ -34,14 +34,38 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Barang</a></li>
                     <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                </ul>
+                    <div class="dropdown nav-tem">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+
+
             </div>
         </div>
-        
+        </li>
+        </ul>
+        </div>
+        </div>
     </nav>
+
     <!-- Masthead-->
     <header class="masthead">
         <div class="container">
@@ -152,7 +176,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="team-member">
-                                <img class="mx-auto rounded-circle" src="{{ asset('template/img/potopipe.jpg') }}"
+                                <img class="mx-auto rounded-circle" src="{{ asset('template/img/potolaila.jpg') }}"
                                     alt="..." />
                                 <h4>Nurlaila Nabillah</h4>
                                 <p class="text-muted">Front End</p>
@@ -160,7 +184,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="team-member">
-                                <img class="mx-auto rounded-circle" src="{{ asset('template/img/poropadil.jpeg') }}"
+                                <img class="mx-auto rounded-circle" src="{{ asset('template/img/potozia.jpg') }}"
                                     alt="..." />
                                 <h4>Nur Fauziah Putri Jannatin</h4>
                                 <p class="text-muted">Front End</p>
@@ -209,8 +233,6 @@
             </button>
         </div>
     </section>
-    <!-- Clients-->
-    <!-- Contact-->
 
     <!-- Footer-->
     <footer class="footer py-4">
@@ -278,9 +300,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group pl-5 pr-5">
                                                 <div class="form-text">Nama Barang </div>
-                                                <p>{{$item->nama_barang}}</p> <input type="hidden"
-                                                    class="form-control" name="barang_id" id="barang_id"
-                                                    value="{{$item->id}}" readonly>
+                                                <p>{{$item->nama_barang}}</p> <input type="hidden" class="form-control"
+                                                    name="barang_id" id="barang_id" value="{{$item->id}}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group pl-5 pr-5">
@@ -290,9 +311,8 @@
                                         </div>
                                         <div class="form-group pl-5 pr-5">
                                             <div class="form-text">Tujuan Meminjam</div>
-                                            <textarea class="form-control" name="tujuan_peminjam" id="tujuan"
-                                                cols="10" rows="5"
-                                                placeholder="Masukan Tujuan Anda Meminjam Barang Tersebut"
+                                            <textarea class="form-control" name="tujuan_peminjam" id="tujuan" cols="10"
+                                                rows="5" placeholder="Masukan Tujuan Anda Meminjam Barang Tersebut"
                                                 required></textarea>
 
                                         </div>
@@ -308,7 +328,6 @@
                                     <i class="fas fa-times me-1"></i>
                                     Close
                                 </button>
-
                             </div>
                         </div>
                     </div>
@@ -317,6 +336,30 @@
         </div>
     </div>
     @endforeach
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" href="#" class="btn btn-primary">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -12,16 +12,28 @@ use App\Http\Controllers\LandingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('/welcome');
+    return view('auth.login');
 });
+
+Route::get('main', function () {
+    return view('home');
+});
+
+Auth::routes();
 Route::get('/landing', [LandingController::class,'index'])->name('nampil');
 Route::post('/landing', [LandingController::class,'tambah_peminjam'])->name('tambah_peminjam');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function (){
+
+    Route::get('/home', [App\Http\Controllers\LandingController::class, 'index'])->name('main');
+
+    Route::get('/logout', function() {
+        Auth::logout();
+        redirect('/');
+        });
+});
