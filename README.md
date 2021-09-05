@@ -21,8 +21,11 @@
 - Nurlaila Nabilah
 - Reyhan Esa
 
-## Turorial
-- Sebelum Mulai harus berdoa dan tanamkan niat , KALAU ANDA TIDAK MENCOBA KAPAN ANDA MAU BISA!!!!!!!!
+## Tutorial
+- composer install
+- php artisan key:generate
+- php artisan voyager:install --with-dummy
+- php artisan serve
 
                           
 
