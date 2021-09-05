@@ -69,18 +69,11 @@
     <!-- Masthead-->
     <header class="masthead">
         <div class="container">
-            <div class="masthead-subheading">Selamat Datang di Starbhak Sarpras</div>
-            <div class="masthead-heading text-uppercase">Silahkan Pinjam Barang yang Di Butuhkan</div>
+            <div class="masthead-subheading">Selamat Datang di Starbhak Sarpras!</div>
         </div>
     </header>
 
     <section class="page-section bg-light" id="portfolio">
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-
-        @endif
         <div class="container">
             <div class="text-center" data-aos="zoom-in">
                 <h2 class="section-heading text-uppercase">Perlengkapan</h2>
@@ -341,6 +334,7 @@
             </div>
         </div>
     </div>
+    @include('sweetalert::alert')
     @endforeach
 
     <!-- Logout Modal-->
@@ -379,7 +373,15 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
-
+        Swal.fire({
+        title: 'QR Code',
+        text: 'Scan QR Code Terlebih Dahulu!',
+        imageUrl: 'https://unsplash.it/400/200',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+        animation: false
+        })
     </script>
 
 </body>
