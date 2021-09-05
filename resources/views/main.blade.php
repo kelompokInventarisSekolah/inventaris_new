@@ -69,7 +69,7 @@
     <!-- Masthead-->
     <header class="masthead">
         <div class="container">
-            <div class="masthead-subheading">Welcome Starbhak Sarpras</div>
+            <div class="masthead-subheading">Selamat Datang di Starbhak Sarpras</div>
             <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
         </div>
     </header>
