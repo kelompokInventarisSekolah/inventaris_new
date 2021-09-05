@@ -12,14 +12,14 @@
 "Kami Ada Dan Kami Nyata"
 
 - Arya Yudha Zachri
-- Fikri Zharfan
+- Fikri Zharfan Daryanto
 - Five Adil Wicaksono
-- Erni Septafia
+- Erni Septafia Andriani
 - Muhammad Iqbal Ramadhan
 - Muhammad Rivaldi Rakasiwi
-- Nur Fauziah Putri 
+- Nur Fauziah Putri Jannatin
 - Nurlaila Nabilah
-- Reyhan Esa
+- Reyhan Esa Adi Nugroho
 
 ## Tutorial
 - composer install
