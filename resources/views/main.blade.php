@@ -97,11 +97,17 @@
 
                                 <div class="portfolio-hover-content">{{$item->jumlah_barang}}</div>
                             </div>
-                            @else
+                            @elseif($item->jumlah_barang  >=1)
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{ $key }}">
                                 <div class="portfolio-hover bg-danger">
 
                                     <div class="portfolio-hover-content">{{$item->jumlah_barang}}</div>
+                                </div>
+                            @else
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#">
+                                <div class="portfolio-hover bg-secondary">
+
+                                    <div class="portfolio-hover-content">Sold Out gan </div>
                                 </div>
                                 @endif
                                 <img class="img-fluid" src="{{voyager::image($item->gambar)}}" alt="..." />
