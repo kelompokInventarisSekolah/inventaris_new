@@ -26,6 +26,12 @@
 - php artisan key:generate
 - php artisan voyager:install --with-dummy
 - php artisan serve
+- ser has been created for you with the following login credential:
+  email: admin@admin.com
+  password: password
+- If you wish to create a new admin user you can pass the --create flag, like so:
+  php artisan voyager:admin your@email.com --create
+  And you will be prompted for the users name and password
 
                           
 
