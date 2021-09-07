@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Barang;
 use App\Models\Ruangan;
 use App\Models\Peminjam;
@@ -29,6 +30,19 @@ class LandingController extends Controller
             'tujuan_peminjam' => $request['tujuan_peminjam'],
             'qty' => $request['qty']
         ]);
-        return redirect()->route('nampil')->with('success', 'Selamat kamu berhasil');
+        return redirect()->route('nampil');
+    }
+    public function generate ($id)
+    {
+        $barang = Barang::findOrFail($id);
+        $qrcode = QrCode::size(400)->generate($barang->lokasi);
+        return view('qrcode',compact('qrcode'));
+    }
+
+    public function qrPeminjam ($id)
+    {
+        $peminjam = Peminjam::findOrFail($id);
+        $qrcode = QrCode::size(400)->generate($peminjam->nama_peminjam);
+        return view('qrcode',compact('qrcode'));
     }
 }

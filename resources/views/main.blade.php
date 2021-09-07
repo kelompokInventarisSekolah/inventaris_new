@@ -54,6 +54,21 @@
 
                         </ul>
                     </div>
+                    {{-- <div class="dropdown nav-tem ms-2">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Barang yang DI Pinjam
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            @foreach ($pembeli as $item)
+                                
+                            <li>
+                                <a class="dropdown-item" href="">{{}}</a>
+                            </li>
+                            
+                            @endforeach
+                        </ul>
+                    </div> --}}
 
 
 
@@ -111,6 +126,10 @@
                                 <div class="portfolio-caption-subheading text-muted">Di Beli Tanggal :
                                     {{$item->created_at}}
                                 </div>
+                                <br>
+                                @if(auth()->user()->role_id == "1")
+                                <a href="{{ route('generate',$item->id) }}" class="btn btn-info">Generate QR</a>
+                               @endif
                             </div>
                     </div>
                 </div>
@@ -281,8 +300,8 @@
                                         <div class="form-group pl-5 pr-5">
                                             <div class="form-text">Nama Peminjam</div>
                                             <input type="text" class="form-control" name="nama_peminjam"
-                                                id="nama_peminjam" value="{{ old('', '') }}"
-                                                placeholder="Masukan Nama Kamu" required>
+                                                id="nama_peminjam" value="{{ Auth::user()->name }}  "
+                                                placeholder="Masukan Nama Kamu" required readonly>
                                         </div>
 
                                         <div class="col-md-6">

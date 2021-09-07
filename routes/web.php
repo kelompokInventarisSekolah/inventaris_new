@@ -28,6 +28,9 @@ Route::get('/landing', [LandingController::class,'index'])->name('nampil');
 Route::post('/landing', [LandingController::class,'tambah_peminjam'])->name('tambah_peminjam');
 // print route
 Route::get('/print', [RestockController::class,'print'])->name('print');
+// QR
+Route::get('qrcode/{id}', [LandingController::class, 'generate'])->name('generate');
+// Route::get('main/{id}', [LandingController::class, 'qrPeminjam'])->name('qrPeminjam');
 
 Route::get('/ruangan', [InventarisController::class,'index'])->name('ruangan');
 Route::get('/inventaris-barangs/print/{id}',[CetakController::class,'cetak'])->name('cetak');
