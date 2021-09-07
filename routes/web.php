@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\RestockController;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\CetakController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +29,8 @@ Route::post('/landing', [LandingController::class,'tambah_peminjam'])->name('tam
 // print route
 Route::get('/print', [RestockController::class,'print'])->name('print');
 
-Route::get('/inventaris', [InventarisController::class,'index'])->name('inventaris');
+Route::get('/ruangan', [InventarisController::class,'index'])->name('ruangan');
+Route::get('/inventaris-barangs/print/{id}',[CetakController::class,'cetak'])->name('cetak');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

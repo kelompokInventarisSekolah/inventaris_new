@@ -10,18 +10,20 @@
             <i class="{{ $dataType->icon }}"></i> {{ $dataType->getTranslatedAttribute('display_name_plural') }}
         </h1>
         <div class="row">
-            
+            @foreach ($ruangan as $item)
+                
             <div class="col-md-2">
                 <div class="card card-statistic-2  ">
                     <div class="card-body pt-5 pb-5 pl-5 bg-info">
                         
-                        <h4 class="display-5 text-white"> Ruangan 30 </h4>
-                    
-                        <a href="" class="btn btn-warning ">View</a>
-                    
+                        <h4 class="display-5 text-white"> {{$item->nama_ruangan}} </h4>
+                        
+                        <a href="/inventaris-barangs/print/{{$item->id}}" class="btn btn-warning ">View</a>
+                        
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
         
         @include('voyager::multilingual.language-selector')
