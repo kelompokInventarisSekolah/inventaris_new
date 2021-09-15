@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Carbon\Carbon;
 use App\Models\Barang;
 use App\Models\Ruangan;
 use App\Models\Peminjam;
@@ -16,8 +17,22 @@ class LandingController extends Controller
         $pembeli = Peminjam::all();
         // $barang_id = Barang::where('id_barang',$id)->get();
         $ruangan = Ruangan::all();
+        $tanggals = Carbon::now()->format('y-m-d');
+        $now = Carbon::now();
+        $thnBulan = $now->year . $now->month;
+        $cek= Peminjam::count();
+        if ($cek == 0) {
+            $urut = 10000001;
+            $nomor= 'PMJ'. $thnBulan . $urut;
+            // dd($nomor);
+        }else{
+            $ambil = Peminjam::all()->last();
+            $urut =(int)substr($ambil->id,-8)+1;
+            $nomor= 'PMJ'. $thnBulan . $urut;
+        }
+        
 
-        return view('main',['barang'=>$barang , 'pembeli'=>$pembeli],compact('ruangan', 'barang' , 'pembeli'));
+        return view('main',['barang'=>$barang , 'pembeli'=>$pembeli],compact('ruangan', 'barang' , 'pembeli','tanggals','nomor'));
     }
     
     public function tambah_peminjam(Request $request)

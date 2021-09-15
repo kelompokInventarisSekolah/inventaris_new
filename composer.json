@@ -16,6 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "nesbot/carbon": "^2.53",
         "realrashid/sweet-alert": "^4.0",
         "simplesoftwareio/simple-qrcode": "~4",
         "tcg/voyager": "^1.5"

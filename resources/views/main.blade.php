@@ -37,8 +37,8 @@
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Barang</a></li>
                     <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                     <div class="dropdown nav-tem ">
-                        <button class="btn btn-transparent dropdown-toggle text-white" type="button" id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-transparent dropdown-toggle text-white" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name }}
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -64,16 +64,16 @@
                                 
                             <li>
                                 <a class="dropdown-item" href="">{{}}</a>
-                            </li>
-                            
-                            @endforeach
-                        </ul>
-                    </div> --}}
+                    </li>
+
+                    @endforeach
+                </ul>
+            </div> --}}
 
 
 
 
-            </div>
+        </div>
         </div>
         </li>
         </ul>
@@ -105,32 +105,32 @@
 
                                 <div class="portfolio-hover-content">{{$item->jumlah_barang}}</div>
                             </div>
-                            @elseif($item->jumlah_barang  >=1)
+                            @elseif($item->jumlah_barang >=1)
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{ $key }}">
                                 <div class="portfolio-hover bg-danger">
 
                                     <div class="portfolio-hover-content">{{$item->jumlah_barang}}</div>
                                 </div>
-                            @else
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#">
-                                <div class="portfolio-hover bg-secondary">
+                                @else
+                                <a class="portfolio-link" data-bs-toggle="modal" href="#">
+                                    <div class="portfolio-hover bg-secondary">
 
-                                    <div class="portfolio-hover-content">Sold Out gan </div>
-                                </div>
-                                @endif
-                                <img class="img-fluid" src="{{voyager::image($item->gambar)}}" alt="..." />
-                            </a>
+                                        <div class="portfolio-hover-content">Sold Out gan </div>
+                                    </div>
+                                    @endif
+                                    <img class="img-fluid" src="{{voyager::image($item->gambar)}}" alt="..." />
+                                </a>
 
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">{{$item->nama_barang}}</div>
-                                <div class="portfolio-caption-subheading text-muted">Di Beli Tanggal :
-                                    {{$item->created_at}}
+                                <div class="portfolio-caption">
+                                    <div class="portfolio-caption-heading">{{$item->nama_barang}}</div>
+                                    <div class="portfolio-caption-subheading text-muted">Di Beli Tanggal :
+                                        {{$item->created_at}}
+                                    </div>
+                                    <br>
+                                    @if(auth()->user()->role_id == "1")
+                                    <a href="{{ route('generate',$item->id) }}" class="btn btn-info">Generate QR</a>
+                                    @endif
                                 </div>
-                                <br>
-                                @if(auth()->user()->role_id == "1")
-                                <a href="{{ route('generate',$item->id) }}" class="btn btn-info">Generate QR</a>
-                               @endif
-                            </div>
                     </div>
                 </div>
                 @endforeach
@@ -256,7 +256,9 @@
     <footer class="footer py-4">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-start">Copyright &copy; Kelompok 1</div>
+                <div class="col-lg-4 text-lg-start">Copyright &copy; Kelompok 1 <?php  
+                    echo date("Y"); 
+                    ?></div>
                 <div class="col-lg-4 my-3 my-lg-0">
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
@@ -273,6 +275,7 @@
     <!-- Portfolio item 1 modal popup-->
     {{-- $barang  --}}
     @foreach ($barang as $key=> $item)
+    
 
     <div class="portfolio-modal modal fade" id="portfolioModal{{ $key }}" tabindex="-1" role="dialog"
         aria-hidden="true">
@@ -296,7 +299,7 @@
                                 <form id="contactForm" data-sb-form-api-token="API_TOKEN"
                                     action="{{route('tambah_peminjam')}}" method="POST">
                                     @csrf
-                                    
+
                                     <div class="row align-items-stretch mb-5">
                                         <div class="form-group pl-5 pr-5">
                                             <div class="form-text">Nama Peminjam</div>
@@ -306,8 +309,8 @@
                                         </div>
                                         <div class="form-group pl-5 pr-5">
                                             <div class="form-text">Kode Peminjam</div>
-                                            <input type="text" class="form-control" name="kode_pinjaman"
-                                                value="{{ old('', '') }}" placeholder="Kode Peminjam" required>
+                                            <input type="text" class="form-control" name="kode_pinjaman" value="{{$nomor}}"
+                                                placeholder="Kode Peminjam" required readonly>
                                         </div>
 
                                         <div class="col-md-6">
@@ -398,14 +401,14 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
-        
+
         // Swal.fire({
         // icon: 'info',
         // title: 'Sabar Kawan',
         // text: 'ScrenShoot QR Ini Berikan Petugas',
         // footer: '<a  class="btn btn-info" href="">Generate QR</a>'
         // })
-        
+
     </script>
 
 </body>
