@@ -92,10 +92,21 @@
         <td>{{$items->barang->nama_barang}}</td>
         <td>{{$items->spesifikasi}}</td>
         <td align="center">{{$items->jumlah}}</td>
-        <th>            v
-        </th>
-        <th></th>
-        <th></th>
+        @if ($items->kondisi_baik >= 1)
+        <th> v </th>
+        <th> </th>
+        <th> </th>
+        @elseif($items->kondisi_rusak_ringan >= 1)
+        <th> </th>
+        <th> v </th>
+        <th> </th>
+        @elseif($items->kondisi_rusak_berat <= 1)
+        
+        <th> </th>
+        <th> </th>
+        <th> v </th>
+        @endif
+        
         <td>{{$items->keterangan}}</td>
     </tr>
     @endforeach
@@ -111,7 +122,10 @@
         <th></th>
         <th></th>
         <th></th>
-        <td >Depok, 07 Sep 2021</td>
+        <td ><?php  
+        date_default_timezone_set("Asia/Jakarta");
+        echo date("l-m-Y h:i:sa"); 
+        ?></td>
         
     </tr>
     <tr>
@@ -200,7 +214,7 @@
         <th></th>
         <th></th>
         <th></th>
-        <td>Prof,DRS Muhammad Iqbal Ramadhan ST,Skom,SPD</td>
+        <td>Ramadin Tarigan,ST</td>
         <th></th>
         <th></th>
         <th></th>

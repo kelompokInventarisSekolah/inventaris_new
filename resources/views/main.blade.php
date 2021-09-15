@@ -36,8 +36,8 @@
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Barang</a></li>
                     <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                    <div class="dropdown nav-tem">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    <div class="dropdown nav-tem ">
+                        <button class="btn btn-transparent dropdown-toggle text-white" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name }}
                         </button>
@@ -296,12 +296,18 @@
                                 <form id="contactForm" data-sb-form-api-token="API_TOKEN"
                                     action="{{route('tambah_peminjam')}}" method="POST">
                                     @csrf
+                                    
                                     <div class="row align-items-stretch mb-5">
                                         <div class="form-group pl-5 pr-5">
                                             <div class="form-text">Nama Peminjam</div>
                                             <input type="text" class="form-control" name="nama_peminjam"
                                                 id="nama_peminjam" value="{{ Auth::user()->name }}  "
                                                 placeholder="Masukan Nama Kamu" required readonly>
+                                        </div>
+                                        <div class="form-group pl-5 pr-5">
+                                            <div class="form-text">Kode Peminjam</div>
+                                            <input type="text" class="form-control" name="kode_pinjaman"
+                                                value="{{ old('', '') }}" placeholder="Kode Peminjam" required>
                                         </div>
 
                                         <div class="col-md-6">
@@ -392,15 +398,14 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
-        Swal.fire({
-        title: 'QR Code',
-        text: 'Scan QR Code Terlebih Dahulu!',
-        imageUrl: 'https://unsplash.it/400/200',
-        imageWidth: 400,
-        imageHeight: 200,
-        imageAlt: 'Custom image',
-        animation: false
-        })
+        
+        // Swal.fire({
+        // icon: 'info',
+        // title: 'Sabar Kawan',
+        // text: 'ScrenShoot QR Ini Berikan Petugas',
+        // footer: '<a  class="btn btn-info" href="">Generate QR</a>'
+        // })
+        
     </script>
 
 </body>

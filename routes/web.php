@@ -30,6 +30,7 @@ Route::post('/landing', [LandingController::class,'tambah_peminjam'])->name('tam
 Route::get('/print', [RestockController::class,'print'])->name('print');
 // QR
 Route::get('qrcode/{id}', [LandingController::class, 'generate'])->name('generate');
+// Route::get('qrcodep/{id}', [LandingController::class, 'generate1'])->name('generate1');
 // Route::get('main/{id}', [LandingController::class, 'qrPeminjam'])->name('qrPeminjam');
 
 Route::get('/ruangan', [InventarisController::class,'index'])->name('ruangan');

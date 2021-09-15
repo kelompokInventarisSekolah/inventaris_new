@@ -28,9 +28,11 @@ class LandingController extends Controller
             'ruangan_id' => $request['ruangan_id'],
             'barang_id' => $request['barang_id'],
             'tujuan_peminjam' => $request['tujuan_peminjam'],
-            'qty' => $request['qty']
+            'qty' => $request['qty'],
+            'kode_pinjaman' => $request['kode_pinjaman']
         ]);
-        return redirect()->route('nampil');
+        
+        return redirect()->route('nampil')->with('success', 'Silahkan Ke Petugas');
     }
     public function generate ($id)
     {
@@ -38,11 +40,12 @@ class LandingController extends Controller
         $qrcode = QrCode::size(400)->generate($barang->lokasi);
         return view('qrcode',compact('qrcode'));
     }
+    // public function generate1 ($id)
+    // {
+    //     $peminjam = Peminjam::findOrFail($id);
+    //     $qrcode = QrCode::size(400)->generate($peminjam->id);
+    //     return view('qrcodep',compact('qrcode'));
+    // }
 
-    public function qrPeminjam ($id)
-    {
-        $peminjam = Peminjam::findOrFail($id);
-        $qrcode = QrCode::size(400)->generate($peminjam->nama_peminjam);
-        return view('qrcode',compact('qrcode'));
-    }
+    
 }
