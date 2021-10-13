@@ -124,7 +124,7 @@
         <th></th>
         <td ><?php  
         date_default_timezone_set("Asia/Jakarta");
-        echo date("l-m-Y h:i:sa"); 
+        echo date("l-m-Y H:i:s"); 
         ?></td>
         
     </tr>

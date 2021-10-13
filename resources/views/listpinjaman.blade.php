@@ -25,7 +25,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="{{ asset('template/img/logo_sarpras.png') }}"
+            <a class="navbar-brand" href="{{route('nampil')}}"><img src="{{ asset('template/img/logo_sarpras.png') }}"
                     alt="..." /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,34 +34,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Barang</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                    
-                    <li class="nav-item">
-                        
-                        <a  class="nav-link" href="/listpinjaman/{{Auth::user()->id}}">List Pinjaman</a>
-                       
-                        <li>
-                        
+
+                    <li class="nav-item"><a class="nav-link" href="#listpinjaman">List Pinjaman</a>
+                    <li>
+
                         <div class="dropdown nav-tem ">
-                        <button class="btn btn-transparent dropdown-toggle text-white" type="button"
-                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->name }}
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <button class="btn btn-transparent dropdown-toggle text-white" type="button"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                                        {{ __('Logout') }}
+                                    </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
 
-                        </ul>
-                    </div>
-                    {{-- <div class="dropdown nav-tem ms-2">
+                            </ul>
+                        </div>
+                        {{-- <div class="dropdown nav-tem ms-2">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Barang yang DI Pinjam
@@ -95,53 +90,34 @@
         </div>
     </header>
 
-    <section class="page-section bg-light" id="portfolio">
+    <section class="page-section bg-light" id="listpinjaman">
         <div class="container">
             <div class="text-center" data-aos="zoom-in">
                 <h2 class="section-heading text-uppercase">Perlengkapan</h2>
                 <h3 class="section-subheading text-muted">Berikut Isi Barang-barang:</h3>
             </div>
             <div class="row">
-                @foreach ($barang as $key=>$item)
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 1-->
-                    <div class="portfolio-item">
-                        @if ($item->jumlah_barang >= 5)
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{ $key }}">
-                            <div class="portfolio-hover bg-info">
-
-                                <div class="portfolio-hover-content">{{$item->jumlah_barang}}</div>
-                            </div>
-                            @elseif($item->jumlah_barang >=1)
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal{{ $key }}">
-                                <div class="portfolio-hover bg-danger">
-
-                                    <div class="portfolio-hover-content">{{$item->jumlah_barang}}</div>
-                                </div>
-                                @else
-                                <a class="portfolio-link" data-bs-toggle="modal" href="#">
-                                    <div class="portfolio-hover bg-secondary">
-
-                                        <div class="portfolio-hover-content">Sold Out gan </div>
-                                    </div>
-                                    @endif
-                                    <img class="img-fluid" src="{{voyager::image($item->gambar)}}" alt="..." />
-                                </a>
-
-                                <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">{{$item->nama_barang}}</div>
-                                    <div class="portfolio-caption-subheading text-muted">Di Beli Tanggal :
-                                        {{$item->created_at}}
-                                    </div>
-                                    <br>
-                                    @if(auth()->user()->role_id == "1")
-                                    <a href="{{ route('generate',$item->id) }}" class="btn btn-info">Generate QR</a>
-                                    @endif
-                                </div>
-                            </a>
-                    </div>
-                </div>
-                @endforeach
+                <table class="table table-info table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama_barang</th>
+                            <th scope="col">Tanggal Pinjaman</th>
+                            <th scope="col">QR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($keranjang as $item)
+                            
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>{{$item->nama->nama_barang}}</td>
+                            <td>{{$item->created_at}}</td>
+                            <td><a href="{{ route('generate1',$item->id) }}" class="btn btn-info">Generate QR</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -279,128 +255,7 @@
             </div>
         </div>
     </footer>
-    <!-- Portfolio Modals-->
-    <!-- Portfolio item 1 modal popup-->
-    {{-- $barang  --}}
-    @foreach ($barang as $key=> $item)
 
-
-    <div class="portfolio-modal modal fade" id="portfolioModal{{ $key }}" tabindex="-1" role="dialog"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img
-                        src="{{ asset('template/assets/img/close-icon.svg') }}" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <!-- Project details-->
-                                <h2 class="text-uppercase">
-                                    {{$item->nama_barang}}
-                                </h2>
-
-                                <p class="item-intro text-muted">Kategori : {{$item->barang->nama_kategori}}</p>
-                                <img class="img-fluid d-block mx-auto" src="{{voyager::image($item->gambar)}}"
-                                    alt="..." />
-
-                                <form id="contactForm" data-sb-form-api-token="API_TOKEN"
-                                    action="{{route('tambah_peminjam')}}" method="POST">
-                                    @csrf
-
-                                    <div class="row align-items-stretch mb-5">
-                                        <div class="form-group pl-5 pr-5">
-                                            <div class="form-text">Nama Peminjam</div>
-                                            <p>{{Auth::user()->name}}</p>
-                                            <input type="hidden" class="form-control" name="id_peminjam"
-                                                id="id_peminjam" value="{{ Auth::user()->id }}  "
-                                                placeholder="Masukan Nama Kamu" required readonly>
-                                        </div>
-                                        <div class="form-group pl-5 pr-5">
-                                            <div class="form-text">Kode Peminjam</div>
-                                            <input type="text" class="form-control" name="kode_pinjaman"
-                                                value="{{$nomor}}" placeholder="Kode Peminjam" required readonly>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group pl-5 pr-5">
-                                                <div class="form-text">Pilih Ruangan</div>
-                                                <select class="form-control" name="ruangan_id" required>
-                                                    <option disabled value="">Pilih Ruangan</option>
-                                                    @foreach ($ruangan as $items)
-                                                    <option value="{{$items->id}}">{{$items->nama_ruangan}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group pl-5 pr-5">
-                                                <div class="form-text">Nama Barang </div>
-                                                <p>{{$item->nama_barang}}</p> <input type="hidden" class="form-control"
-                                                    name="barang_id" id="barang_id" value="{{$item->id}}" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group pl-5 pr-5">
-                                            <div class="form-text">Jumlah Barang</div>
-                                            <input type="number" class="form-control" name="qty"
-                                                value="{{ old('', '') }}" placeholder="Masukan Jumlah Barang" required>
-                                        </div>
-                                        <div class="form-group pl-5 pr-5">
-                                            <div class="form-text">Tujuan Meminjam</div>
-                                            <textarea class="form-control" name="tujuan_peminjam" id="tujuan" cols="10"
-                                                rows="5" placeholder="Masukan Tujuan Anda Meminjam Barang Tersebut"
-                                                required></textarea>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
-                                <br><br>
-                                <button class="btn btn-primary btn-xl text-uppercase bg-info" data-bs-dismiss="modal"
-                                    type="button">
-                                    <i class="fas fa-times me-1"></i>
-                                    Close
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @include('sweetalert::alert')
-    @endforeach
-
-
-   
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" href="#" class="btn btn-primary">Logout</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>

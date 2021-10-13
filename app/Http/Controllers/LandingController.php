@@ -15,6 +15,7 @@ class LandingController extends Controller
         
         $barang = Barang::all();
         $pembeli = Peminjam::all();
+        
         // $barang_id = Barang::where('id_barang',$id)->get();
         $ruangan = Ruangan::all();
         $tanggals = Carbon::now()->format('y-m-d');
@@ -30,6 +31,8 @@ class LandingController extends Controller
             $urut =(int)substr($ambil->id,-8)+1;
             $nomor= 'PMJ'. $thnBulan . $urut;
         }
+
+       
         
 
         return view('main',['barang'=>$barang , 'pembeli'=>$pembeli],compact('ruangan', 'barang' , 'pembeli','tanggals','nomor'));
@@ -39,7 +42,7 @@ class LandingController extends Controller
     {
         // dd($request);
         Peminjam ::create([
-            'nama_peminjam' => $request['nama_peminjam'],
+            'id_peminjam' => $request['id_peminjam'],
             'ruangan_id' => $request['ruangan_id'],
             'barang_id' => $request['barang_id'],
             'tujuan_peminjam' => $request['tujuan_peminjam'],
@@ -47,7 +50,7 @@ class LandingController extends Controller
             'kode_pinjaman' => $request['kode_pinjaman']
         ]);
         
-        return redirect()->route('nampil')->with('success', 'Silahkan Ke Petugas');
+        return redirect()->route('nampil')->with('success', 'Buka List Pinjaman Lalu GenerateQR Sesuai Barang Lalu SS Beri Ke Petugas');
     }
     public function generate ($id)
     {
@@ -61,6 +64,7 @@ class LandingController extends Controller
     //     $qrcode = QrCode::size(400)->generate($peminjam->id);
     //     return view('qrcodep',compact('qrcode'));
     // }
+    
 
     
 }

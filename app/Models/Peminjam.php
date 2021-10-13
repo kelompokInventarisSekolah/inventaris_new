@@ -11,11 +11,14 @@ class Peminjam extends Model
     use HasFactory;
 
     public $table = "peminjams";
-    protected $fillable = ['nama_peminjam','barang_id','ruangan_id','tujuan_peminjam','qty','kode_pinjaman'];
+    protected $fillable = ['id_peminjam','barang_id','ruangan_id','tujuan_peminjam','qty','kode_pinjaman'];
     // protected $with = ['pembeli'];
     // public function pembeli(){
     //     return $this->belongsTo( Barang::class,'barang_id');
     // }
+    public function nama(){
+        return $this->belongsTo(Barang::class,'barang_id');
+    }
 
 }
 

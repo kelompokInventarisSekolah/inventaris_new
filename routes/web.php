@@ -5,6 +5,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\RestockController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\CetakController;
+use App\Http\Controllers\ListpinjamanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,11 +31,12 @@ Route::post('/landing', [LandingController::class,'tambah_peminjam'])->name('tam
 Route::get('/print', [RestockController::class,'print'])->name('print');
 // QR
 Route::get('qrcode/{id}', [LandingController::class, 'generate'])->name('generate');
-// Route::get('qrcodep/{id}', [LandingController::class, 'generate1'])->name('generate1');
-// Route::get('main/{id}', [LandingController::class, 'qrPeminjam'])->name('qrPeminjam');
+Route::get('qrcodePeminjam/{id}', [ListpinjamanController::class, 'generate'])->name('generate1');
 
 Route::get('/ruangan', [InventarisController::class,'index'])->name('ruangan');
 Route::get('/inventaris-barangs/print/{id}',[CetakController::class,'cetak'])->name('cetak');
+
+Route::get('/listpinjaman/{id}', [ListpinjamanController::class,'tampil'])->name('keranjang');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
