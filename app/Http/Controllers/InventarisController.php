@@ -16,6 +16,7 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\Models\Ruangan;
+use App\Models\Barang;
 use App\Models\InventarisBarang;
 class InventarisController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
@@ -36,7 +37,7 @@ class InventarisController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
     public function index(Request $request)
     {
         $ruangan = Ruangan::all();
-
+        $barang = Barang::all();
        
         
 
@@ -205,7 +206,8 @@ class InventarisController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
             'usesSoftDeletes',
             'showSoftDeleted',
             'showCheckboxColumn',
-            'ruangan'
+            'ruangan',
+            'barang'
         ));
     }
 

@@ -5,10 +5,61 @@
 @section('page_header')
 
     <div class="container-fluid">
-        
         <h1 class="page-title">
             <i class="{{ $dataType->icon }}"></i> {{ $dataType->getTranslatedAttribute('display_name_plural') }}
         </h1>
+               
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="text-center">
+                                    Barang Habis Pakai
+                                </h4>
+                            </div>
+                            <hr>
+                        </div>  
+                                <div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @foreach ($barang as $barangs)
+                                                @if ($barangs->jenis_barang > 0)
+                                                
+                                                {{$barangs->nama_barang}} ,  
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="text-center">
+                                    Barang Tidak Habis Pakai
+                                </h4>
+                            </div>
+                            <hr>
+                        </div>  
+                                <div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @foreach ($barang as $barangss)
+                                                @if ($barangss->jenis_barang < 1)
+                                                
+                                                {{$barangss->nama_barang}} ,  
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+                    
+               
+        
+        
+        
         <div class="row">
             @foreach ($ruangan as $item)
                 
